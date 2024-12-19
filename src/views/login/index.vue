@@ -36,6 +36,7 @@
               class="login_btn"
               type="primary"
               size="default"
+              @click="login"
             >
               登录
             </el-button>
@@ -49,11 +50,24 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
+//引入用户相关的小仓库
+import useUserStore from '@/store/modules/user'
 //收集账号与密码的数据
 let loginForm = reactive({ username: 'admin', password: '111111' })
 let loading = ref(false)
+let userStore = useUserStore()
+const login = () => {
+  loading.value = true
+  userStore
+    .userlogin(loginForm)
+    .then(() => {
+      loading.value = false
+    })
+    .catch(() => {
+      loading.value = false
+    })
+}
 </script>
-
 <style scoped lang="scss">
 .login-container {
   width: 100%;

@@ -1,6 +1,10 @@
 // 创建用户相关的小仓库
 // Store 是使用 defineStore() 定义的，并且它需要一个唯一名称，作为第一个参数传递
 import { defineStore } from 'pinia'
+//引入数据类型
+import { LoginForm } from '@/api/user/types'
+//引入接口
+import { requLogin } from '@/api/user/index'
 //创建用户小仓库
 export const useUserStore = defineStore('user', {
   //小仓库存储数据地方
@@ -15,9 +19,10 @@ export const useUserStore = defineStore('user', {
   },
   //异步|逻辑的地方
   actions: {
-    // 修改用户信息
-    changeUserInfo() {
-      this.userInfo.name = '李四'
+    //用户登录的方法
+    async userlogin(data: LoginForm) {
+      let result = await requLogin(data)
+      console.log(result)
     },
   },
 })

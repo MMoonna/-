@@ -50,22 +50,35 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
+import { ElNotification } from 'element-plus'
 //引入用户相关的小仓库
 import useUserStore from '@/store/modules/user'
+// 返回路由器实例
+import { useRouter } from 'vue-router'
+import { getTime } from '@/utils/time'
+
 //收集账号与密码的数据
 let loginForm = reactive({ username: 'admin', password: '111111' })
 let loading = ref(false)
 let userStore = useUserStore()
-const login = () => {
+let $router = useRouter()
+const login = async () => {
   loading.value = true
-  userStore
-    .userlogin(loginForm)
-    .then(() => {
-      loading.value = false
+  try {
+    await userStore.userlogin(loginForm) //登录成功
+    // 编程式导航跳转到展示数据首页
+    $router.push('/')
+    ElNotification({
+      type: 'success',
+      message: '登陆成功',
+      title: getTime() + '好！',
     })
-    .catch(() => {
-      loading.value = false
+  } catch (error: any) {
+    ElNotification({
+      type: 'error',
+      message: error.message,
     })
+  }
 }
 </script>
 <style scoped lang="scss">
@@ -85,13 +98,11 @@ const login = () => {
     color: #fffff0;
     font-size: 40px;
   }
-
   h2 {
     font-size: 20px;
     color: #fffff0;
     margin: 20px 0px;
   }
-
   .login_btn {
     width: 100%;
   }

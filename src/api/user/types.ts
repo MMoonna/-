@@ -5,7 +5,10 @@ export interface LoginForm {
 }
 // 因为不用对外暴漏 所以不用加export
 interface dataType {
-  token: string
+  // 登陆失败返回token
+  token?: string
+  // 登录失败报错
+  message?: string
 }
 // 登录接口返回的数据类型
 export interface LoginResponse {
@@ -29,5 +32,5 @@ interface user {
 // 定义服务器返回用户信息相关的数据类型
 export interface UserInfo {
   code: number
-  data: user  
+  data: user
 }

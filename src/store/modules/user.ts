@@ -5,16 +5,17 @@ import { defineStore } from 'pinia'
 import type { LoginForm, LoginResponse } from '@/api/user/types'
 //引入接口
 import { requLogin } from '@/api/user/index'
+import { UserState } from './types/type'
+import { commonRoutes } from '@/router/routes'
 //创建用户小仓库
 export const useUserStore = defineStore('user', {
   //小仓库存储数据地方
-  state: () => {
+  state: (): UserState => {
     return {
       // 所有这些属性都将自动推断其类型
-      userInfo: {
-        name: '张三',
-        age: 18,
-      },
+      menuRoutes: commonRoutes, //仓库存储生成菜单需要数组(路由)
+      username: '',
+      avatar: '',
       token: '',
     }
   },

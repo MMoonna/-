@@ -1,107 +1,101 @@
-/* reset.min.css */
-@charset "utf-8";
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
 
+    outline: none;
+}
+
+html,
 body,
+div,
+span,
+applet,
+object,
+iframe,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-hr,
 p,
 blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
 dl,
 dt,
 dd,
-ul,
 ol,
-li,
-button,
-input,
-textarea,
-th,
-td {
-    margin: 0;
-    padding: 0
-}
-
-body {
-    font-size: 12px;
-    font-style: normal;
-    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif
-}
-
-small {
-    font-size: 12px
-}
-
-h1 {
-    font-size: 18px
-}
-
-h2 {
-    font-size: 16px
-}
-
-h3 {
-    font-size: 14px
-}
-
-h4,
-h5,
-h6 {
-    font-size: 100%
-}
-
 ul,
-ol {
-    list-style: none
-}
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    font: inherit;
+    font-size: 100%;
 
-a {
-    text-decoration: none;
-    background-color: transparent
-}
+    margin: 0;
+    padding: 0;
 
-a:hover,
-a:active {
-    outline-width: 0;
-    text-decoration: none
-}
+    vertical-align: baseline;
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0
-}
-
-hr {
     border: 0;
-    height: 1px
-}
-
-img {
-    border-style: none
-}
-
-img:not([src]) {
-    display: none
-}
-
-svg:not(:root) {
-    overflow: hidden
-}
-
-html {
-    -webkit-touch-callout: none;
-    -webkit-text-size-adjust: 100%
-}
-
-input,
-textarea,
-button,
-a {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
 article,
@@ -111,187 +105,82 @@ figcaption,
 figure,
 footer,
 header,
-main,
+hgroup,
 menu,
 nav,
-section,
-summary {
-    display: block
+section {
+    display: block;
 }
 
-audio,
-canvas,
-progress,
-video {
-    display: inline-block
+body {
+    line-height: 1;
 }
 
-audio:not([controls]),
-video:not([controls]) {
-    display: none;
-    height: 0
+ol,
+ul {
+    list-style: none;
 }
 
-progress {
-    vertical-align: baseline
-}
+blockquote,
+q {
+    quotes: none;
 
-mark {
-    background-color: #ff0;
-    color: #000
+    &:before,
+    &:after {
+        content: '';
+        content: none;
+    }
 }
 
 sub,
 sup {
-    position: relative;
     font-size: 75%;
     line-height: 0;
-    vertical-align: baseline
-}
 
-sub {
-    bottom: -0.25em
+    position: relative;
+
+    vertical-align: baseline;
 }
 
 sup {
-    top: -0.5em
+    top: -.5em;
 }
 
-button,
+sub {
+    bottom: -.25em;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
 input,
-select,
-textarea {
-    font-size: 100%;
-    outline: 0
-}
+textarea,
+button {
+    font-family: inhert;
+    font-size: inherit;
 
-button,
-input {
-    overflow: visible
-}
-
-button,
-select {
-    text-transform: none
-}
-
-textarea {
-    overflow: auto
-}
-
-button,
-html [type="button"],
-[type="reset"],
-[type="submit"] {
-    -webkit-appearance: button; /*支持WebKit内核的浏览器 */
-    appearance: button; /*备用,未来标准化可能会支持的属性 */
-}
-
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-    border-style: none;
-    padding: 0
-}
-
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-    outline: 1px dotted ButtonText
-}
-
-[type="checkbox"],
-[type="radio"] {
-    box-sizing: border-box;
-    padding: 0
-}
-
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-    height: auto
-}
-
-[type="search"] {
-    -webkit-appearance: textfield; /*支持WebKit内核的浏览器 */
-    appearance: textfield; /*备用,未来标准化可能会支持的属性 */
-    outline-offset: -2px
-}
-
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none
-}
-
-::-webkit-input-placeholder {
     color: inherit;
-    opacity: .54
 }
 
-::-webkit-file-upload-button {
-    -webkit-appearance: button;
-    font: inherit
+select {
+    text-indent: .01px;
+    text-overflow: '';
+
+    border: 0;
+    border-radius: 0;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
-.clearfix:after {
-    display: block;
-    height: 0;
-    content: "";
-    clear: both
+select::-ms-expand {
+    display: none;
 }
 
-
-/* index.css */
-// html,
-// body {
-//     background: #D6D7DB;
-// }
-
-.container {
-    box-sizing: border-box;
-    margin: 20px auto;
-    width: 760px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.container .column {
-    box-sizing: border-box;
-    width: 240px;
-}
-
-.card {
-    margin-bottom: 10px;
-    padding: 5px;
-    background: #FFF;
-    box-shadow: 3px 3px 10px 0 #222;
-}
-
-.card a {
-    display: block;
-}
-
-.card a .lazyImageBox {
-    /* height: xxx;  如果是需要进行图片延迟加载，在图片不显示的时候，我们要让盒子的高度等于图片的高度，这样才能把盒子撑开（服务器返回给我们的数据中，一定要包含图片的高度和宽度） */
-    // background: url("../images/default.gif") no-repeat center center #F4F4F4;
-    overflow: hidden;
-}
-
-.card a .lazyImageBox img {
-    width: 100%;
-    opacity: 0;
-    transition: opacity .3s;
-}
-
-.card a p {
-    margin-top: 5px;
-    color: #000;
-    font-size: 12px;
-    line-height: 20px;
-}
-
-.loadMore {
-    height: 100px;
+code,
+pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
 }

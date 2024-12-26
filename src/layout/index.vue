@@ -7,27 +7,39 @@
       <!-- 滚动组件 -->
       <el-scrollbar class="scrollbar">
         <!-- 菜单组件-->
-        <el-menu background-color="#001529" text-color="white">
+        <el-menu
+          background-color="#001529"
+          text-color="white"
+          :default-active="$route.path"
+        >
           <!--根据路由动态生成菜单-->
           <Menu :menuList="useStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <!-- <div class="layout_tabbar"> -->
-    <!-- layout组件的顶部导航tabbar -->
-    <!-- <Tabbar></Tabbar> -->
-    <!-- </div> -->
+    <div class="layout_tabbar">
+      <!-- layout组件的顶部导航tabbar -->
+      <Tabbar></Tabbar>
+    </div>
     <!-- 内容展示区域 -->
     <div class="layout_main">
-      <!-- <Main></Main> -->
+      <Main></Main>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+//获取路由对象
+import { useRoute } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 //引入菜单组件
 import Menu from './menu/index.vue'
+//右侧内容展示区域
+import Main from './main/index.vue'
+//引入顶部tabbar组件
+import Tabbar from './tabbar/index.vue'
+//获取路由对象
+let $route = useRoute()
 const useStore = useUserStore()
 </script>
 <style lang="scss" scoped>
@@ -49,6 +61,33 @@ const useStore = useUserStore()
       .el-menu {
         border-right: none;
       }
+    }
+  }
+  .layout_tabbar {
+    position: fixed;
+    width: calc(100% - $base-menu-width);
+    height: $base-tabbar-height;
+    top: 0px;
+    left: $base-menu-width;
+    transition: all 0.3s;
+    &.fold {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
+  }
+  .layout_main {
+    position: absolute;
+    width: calc(100% - $base-menu-width);
+    height: calc(100vh - $base-tabbar-height);
+    left: $base-menu-width;
+    top: $base-tabbar-height;
+    padding: 20px;
+    overflow: auto;
+    transition: all 0.3s;
+
+    &.fold {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
     }
   }
 }

@@ -19,7 +19,7 @@ export const commonRoutes = [
     meta: {
       title: 'hh',
       hidden: false,
-      icon: '',
+      icon: 'Ship',
     },
     // redirect: '/home',
     children: [
@@ -32,31 +32,101 @@ export const commonRoutes = [
           icon: 'HomeFilled',
         },
       },
+    ],
+  },
+  {
+    path: '/screen',
+    component: () => import('@/views/screen/index.vue'),
+    name: 'screen',
+    meta: {
+      title: '大屏',
+      hidden: false,
+      icon: 'DataLine',
+    },
+  },
+  {
+    path: '/acl',
+    component: () => import('@/layout/index.vue'),
+    name: 'Acl',
+    meta: {
+      title: '权限管理',
+      hidden: true,
+      icon: 'Lock',
+    },
+    children: [
       {
-        path: '/home2',
-        component: () => import('@/views/home/index3.vue'),
+        path: '/acl/user',
+        component: () => import('@/views/acl/user/index.vue'),
         meta: {
-          title: '首页2',
+          title: '用户管理',
           hidden: false,
-          icon: 'HomeFilled',
+          icon: 'User',
         },
       },
       {
-        path: '/home3',
-        component: () => import('@/views/home/index1.vue'),
+        path: '/acl/role',
+        component: () => import('@/views/acl/role/index.vue'),
         meta: {
-          title: '首页3',
+          title: '角色管理',
           hidden: false,
-          icon: 'HomeFilled',
+          icon: 'Star',
         },
       },
       {
-        path: '/home4',
-        component: () => import('@/views/home/index2.vue'),
+        path: '/acl/permission',
+        component: () => import('@/views/acl/permission/index.vue'),
         meta: {
-          title: '首页4',
+          title: '菜单管理',
           hidden: false,
-          icon: 'HomeFilled',
+          icon: 'SetUp',
+        },
+      },
+    ],
+  },
+  {
+    path: '/product',
+    component: () => import('@/layout/index.vue'),
+    name: 'product',
+    meta: {
+      title: '商品管理',
+      hidden: false,
+      icon: 'Goods',
+    },
+    children: [
+      {
+        path: '/product/trademark',
+        component: () => import('@/views/product/trademark/index.vue'),
+        meta: {
+          title: '品牌管理',
+          hidden: false,
+          icon: 'StarFilled',
+        },
+      },
+      {
+        path: '/product/attr',
+        component: () => import('@/views/product/attr/index.vue'),
+        meta: {
+          title: '平台属性管理',
+          hidden: false,
+          icon: 'EditPen',
+        },
+      },
+      {
+        path: '/product/spu',
+        component: () => import('@/views/product/spu/index.vue'),
+        meta: {
+          title: 'Spu管理',
+          hidden: false,
+          icon: 'Compass',
+        },
+      },
+      {
+        path: '/product/sku',
+        component: () => import('@/views/product/sku/index.vue'),
+        meta: {
+          title: 'Sku管理',
+          hidden: false,
+          icon: 'PieChart',
         },
       },
     ],

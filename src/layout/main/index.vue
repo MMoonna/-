@@ -4,10 +4,27 @@
   <router-view v-slot="{ Component }">
     <transition name="fade">
       <!-- 渲染layout一级路由组件的子路由 -->
-      <component :is="Component" />
+      <component :is="Component" v-if="!refesh" key="main" />
     </transition>
   </router-view>
 </template>
+<script lang="ts" setup>
+import { ref, watch, nextTick } from 'vue'
+import { useSettingStore } from '@/store/modules/setting'
+let useSetting = useSettingStore()
+let refesh = ref(false)
+// 第一个参数是你要监听的值，第二个参数是回调函数，当值发生变化的时候，回调函数会执行
+watch(
+  () => useSetting.refesh,
+  () => {
+    refesh.value = true
+    nextTick(() => {
+      refesh.value = false
+    })
+  },
+)
+</script>
+
 <style scoped>
 .fade-enter-from {
   opacity: 0;

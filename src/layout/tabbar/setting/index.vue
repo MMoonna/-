@@ -31,6 +31,10 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/store/modules/user'
 import { useSettingStore } from '@/store/modules/setting'
+import { useRouter, useRoute } from 'vue-router'
+//获取路由器对象
+let $router = useRouter()
+let $route = useRoute()
 const userStore = useUserStore()
 const useSetting = useSettingStore()
 //刷新按钮点击回调
@@ -49,8 +53,9 @@ const fullScreen = () => {
   }
 }
 //退出登录
-const logout = () => {
-  userStore.logout()
+const logout = async () => {
+  await userStore.logout()
+  $router.push({ path: '/login', query: { redirect: $route.path } })
 }
 </script>
 

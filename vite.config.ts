@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 //引入svg需要用到插件
@@ -6,18 +6,19 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 //mock插件提供方法
 import { viteMockServe } from 'vite-plugin-mock'
 // https://vite.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
+  //获取各种环境下的对应的变量
+  let env = loadEnv(mode, process.cwd())
   return {
+    publicPath: 'https://gitee.com/jch1011/guiguzhenxuan',
     plugins: [
       vue(),
       createSvgIconsPlugin({
-        // Specify the icon folder to be cached
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
-        // Specify symbolId format
         symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
-        enable: command === 'serve',
+        enable: command === 'serve', //保证开发阶段可以使用mock接口
       }),
     ],
     resolve: {
@@ -32,6 +33,18 @@ export default defineConfig(({ command }) => {
           additionalData: `
           @use "@/styles/variable.scss" as *;
         `, // 引入 SCSS 全局变量文件
+        },
+      },
+    }, //代理跨域
+    server: {
+      proxy: {
+        [env.VITE_APP_BASE_API]: {
+          //获取数据的服务器地址设置
+          target: env.VITE_SERVE,
+          //需要代理跨域
+          changeOrigin: true,
+          //路径重写
+          rewrite: (path) => path.replace(/^\/api/, ''),
         },
       },
     },

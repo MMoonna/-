@@ -5,7 +5,12 @@ export interface ResponseData {
   ok: boolean
 }
 // 一级分类列表数据类型
-export interface CategoryListData1 {
-  id: number    
+export interface CategoryListData {
+  id: number | string //因为在仓库中定义的是cateid: '',所以这里用number | string
   name: string
+  category1Id?: number
+  category2Id?: number
+}
+export interface CategoryResponseData extends ResponseData {
+  data: CategoryListData[]
 }

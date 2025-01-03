@@ -28,6 +28,13 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { useCategoryStore } from '@/store/modules/category'
+const categoryStore = useCategoryStore()
+onMounted(() => {
+  categoryStore.getCategoryList()
+})
+</script>
 
 <style scoped></style>

@@ -13,10 +13,21 @@
         ></el-table-column>
         <el-table-column
           label="属性名称"
-          width="120px"
+          width="200px"
           prop="attrName"
         ></el-table-column>
-        <el-table-column prop="address" label="属性值名称" />
+        <el-table-column prop="address" label="属性值名称">
+          <template #default="{ row, index }">
+            <el-tag
+              type="primary"
+              v-for="attrValue in row.attrValueList"
+              :key="attrValue.id"
+              style="margin: 0px 5px"
+            >
+              {{ attrValue.valueName }}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="120px">
           <template #default="{ row, index }">
             <el-button type="primary" icon="edit" size="small"></el-button>
@@ -24,33 +35,27 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination size="small" layout="prev, pager, next" :total="10" />
     </div>
   </el-card>
 </template>
 
 <script lang="ts" setup>
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+import { watch, ref, reactive } from 'vue'
+import { useCategoryStore } from '@/store/modules/category'
+import { AttrListData } from '@/api/product/attr/type'
+const categoryStore = useCategoryStore()
+const tableData = ref<AttrListData[]>([])
+watch(
+  () => categoryStore.cateid3,
+  (newVal) => {
+    if (newVal) {
+      // 获取平台属性列表
+      categoryStore.reqAttrList()
+      tableData.value = categoryStore.tabledata
+    }
   },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
+)
 </script>
 
 <style scoped></style>

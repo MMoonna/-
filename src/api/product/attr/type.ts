@@ -14,3 +14,20 @@ export interface CategoryListData {
 export interface CategoryResponseData extends ResponseData {
   data: CategoryListData[]
 }
+// 表格数据类型
+export interface AttrListData {
+  id: number
+  attrName: string
+  categoryId: number
+  categoryLevel: number
+  attrValueList: attlist
+}
+export type attlist = AttrValueListData[]
+export interface AttrValueListData {
+  id: number
+  valueName: string
+  attrId: number
+}
+export interface AttrListResponseData extends ResponseData {
+  data: AttrListData[]
+}

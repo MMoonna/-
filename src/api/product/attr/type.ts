@@ -16,18 +16,26 @@ export interface CategoryResponseData extends ResponseData {
 }
 // 表格数据类型
 export interface AttrListData {
-  id: number
+  id?: number
   attrName: string
-  categoryId: number
+  categoryId: number | string
   categoryLevel: number
   attrValueList: attlist
 }
 export type attlist = AttrValueListData[]
 export interface AttrValueListData {
-  id: number
+  id?: number
   valueName: string
-  attrId: number
+  attrId?: number
+  flag?: boolean
 }
 export interface AttrListResponseData extends ResponseData {
   data: AttrListData[]
+}
+//属性值对象的ts类型
+export interface AttrValue {
+  id?: number
+  valueName: string
+  attrId?: number
+  flag?: boolean
 }

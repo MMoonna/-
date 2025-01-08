@@ -9,6 +9,7 @@
             @change="seletval"
             v-model="categoryStore.cateid1"
             clearable
+            :disabled="show == 1 ? true : false"
           >
             <el-option
               v-for="item in categoryStore.categoryList1"
@@ -25,6 +26,7 @@
             @change="seletval2"
             v-model="categoryStore.cateid2"
             clearable
+            :disabled="show == 1 ? true : false"
           >
             <el-option
               v-for="item in categoryStore.categoryList2"
@@ -40,6 +42,7 @@
             style="width: 200px"
             v-model="categoryStore.cateid3"
             clearable
+            :disabled="show == 1 ? true : false"
           >
             <el-option
               v-for="item in categoryStore.categoryList3"
@@ -57,6 +60,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useCategoryStore } from '@/store/modules/category'
+defineProps(['show'])
 const categoryStore = useCategoryStore()
 onMounted(() => {
   categoryStore.getCategoryList1()
